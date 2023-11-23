@@ -26,11 +26,17 @@ body {
 #SMid {
     background-color: rgb(57, 57, 57);
     height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #SLow {
     background-color: rgb(150, 150, 150);
     height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -41,13 +47,81 @@ body {
 
 }
 
-#Week {
+#Nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    height: 10%;
+}
 
+#temp {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+#Week {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: rgb(235, 125, 0);
     height: 30%;
+}
+
+#WeekDayTepms {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 5%;
+    height: 70%;
+}
+
+#WeekDayTepms .card {
+    width: 18rem;
+    margin: 0 1%;
+
+}
+
+.card-body {
+    max-height: 100%;
+    font-size: 0.8em;
+    /* Smaller font size */
+    line-height: 1;
+    /* Adjusted line height */
+    /* Adjust the max height for the card body */
+    /* Add vertical scroll when content overflows */
+    padding: 5%;
+    /* Adjust padding for card body content */
 }
 
 #Highlights {
     background-color: rgb(255, 200, 138);
     height: 70%;
+}
+
+#Headings {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#TodayHighlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 70%;
+    padding: 0 2%;
+
+}
+
+#TodayHighlights .card {
+    margin: 1%;
+    /* Adjust margin for space between cards */
+    flex-basis: calc(45%);
+    /* Set width for two cards in a row with margins */
+    /* Other styles for the cards */
 }
