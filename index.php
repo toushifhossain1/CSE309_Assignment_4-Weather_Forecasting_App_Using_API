@@ -6,13 +6,17 @@ $contents = file_get_contents($url);
 $clima = json_decode($contents);
 
 
-$temperature = $clima->list[0]->main->temp;
+$temperature = number_format($clima->list[0]->main->temp, 1);
 $timestamp = $clima->list[0]->dt;
-$feelsLike = $clima->list[0]->main->feels_like;
-$minTemp = $clima->list[0]->main->temp_min;
-$maxTemp = $clima->list[0]->main->temp_max;
+$feelsLike = number_format($clima->list[0]->main->feels_like, 1);
+$minTemp = number_format($clima->list[0]->main->temp_min, 1);
+$maxTemp = number_format($clima->list[0]->main->temp_max, 1);
 $humidity = $clima->list[0]->main->humidity;
-
+$windSpeed = $clima->list[0]->wind->speed;
+$windDegree = $clima->list[0]->wind->deg;
+$visibility = $clima->list[0]->visibility;
+$visiblity = $visibility * 0.001;
+$cloud = $clima->list[0]->clouds->all;
 $dayTime = date("l, H:i", $timestamp);
 
 $city = $clima->city->name;
@@ -60,8 +64,8 @@ if ($clima === null || !isset($clima['list'])) {
 
             $day = date('D', strtotime($date));
             $dayS[$i] = $day;
-            $min_tempS[$i] = $minMaxTemps[$date]['min_temp'];
-            $max_tempS[$i] = $minMaxTemps[$date]['max_temp'];
+            $min_tempS[$i] = number_format($minMaxTemps[$date]['min_temp'], 1);
+            $max_tempS[$i] = number_format($minMaxTemps[$date]['max_temp'], 1);
             $previousDate = $date;
             $i++;
 
@@ -119,16 +123,21 @@ if ($clima === null || !isset($clima['list'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
     <div id="Container">
 
         <div id="Sidebar">
+
             <div id="STop">
+
                 <div class="card" style="width: 18rem;" id="side-top-card">
                     <div class="card-body">
 
+                        <div id="top_image"><img src="img/top_left.png" alt="" width="50%"></div>
+                        <br>
                         <p class="card-text" id="Today_temp">
                             <?php echo $temperature; ?> °C
                         </p>
@@ -183,10 +192,10 @@ if ($clima === null || !isset($clima['list'])) {
                                 <?php echo $dayS[1]; ?>
                             </p>
                             <p class="card-text">
-                                <?php echo $min_tempS[1]; ?>
+                                <?php echo $min_tempS[1]; ?> °C
                             </p>
                             <p class="card-text">
-                                <?php echo $max_tempS[1]; ?>
+                                <?php echo $max_tempS[1]; ?> °C
                             </p>
 
                         </div>
@@ -198,10 +207,10 @@ if ($clima === null || !isset($clima['list'])) {
                                 <?php echo $dayS[2]; ?>
                             </p>
                             <p class="card-text">
-                                <?php echo $min_tempS[2]; ?>
+                                <?php echo $min_tempS[2]; ?> °C
                             </p>
                             <p class="card-text">
-                                <?php echo $max_tempS[2]; ?>
+                                <?php echo $max_tempS[2]; ?> °C
                             </p>
 
                         </div>
@@ -213,10 +222,10 @@ if ($clima === null || !isset($clima['list'])) {
                                 <?php echo $dayS[3]; ?>
                             </p>
                             <p class="card-text">
-                                <?php echo $min_tempS[3]; ?>
+                                <?php echo $min_tempS[3]; ?> °C
                             </p>
                             <p class="card-text">
-                                <?php echo $max_tempS[3]; ?>
+                                <?php echo $max_tempS[3]; ?> °C
                             </p>
 
                         </div>
@@ -228,10 +237,10 @@ if ($clima === null || !isset($clima['list'])) {
                                 <?php echo $dayS[4]; ?>
                             </p>
                             <p class="card-text">
-                                <?php echo $min_tempS[4]; ?>
+                                <?php echo $min_tempS[4]; ?> °C
                             </p>
                             <p class="card-text">
-                                <?php echo $max_tempS[4]; ?>
+                                <?php echo $max_tempS[4]; ?> °C
                             </p>
 
                         </div>
@@ -243,10 +252,10 @@ if ($clima === null || !isset($clima['list'])) {
                                 <?php echo $dayS[5]; ?>
                             </p>
                             <p class="card-text">
-                                <?php echo $min_tempS[5]; ?>
+                                <?php echo $min_tempS[5]; ?> °C
                             </p>
                             <p class="card-text">
-                                <?php echo $max_tempS[5]; ?>
+                                <?php echo $max_tempS[5]; ?> °C
                             </p>
 
                         </div>
@@ -255,14 +264,14 @@ if ($clima === null || !isset($clima['list'])) {
             </div>
             <div id="Highlights">
                 <div id="Heading">
-                    <b>Today's Highlights</b>
+                    <br> <br> <b><u>Today's Highlights</u></b>
                 </div>
                 <div id="TodayHighlights">
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
                             <p class="card-text">Humidity</p>
                             <p class="card-text">
-                                <?php echo $humidity; ?>
+                                <?php echo $humidity; ?>%
                             </p>
                             <p class="card-text">
                             <div class="progress" role="progressbar" aria-label="Humidity example"
@@ -279,23 +288,47 @@ if ($clima === null || !isset($clima['list'])) {
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Day</p>
-                            <p class="card-text">Min</p>
-                            <p class="card-text">Max</p>
+                            <p class="card-text">Wind Speed</p>
+                            <p class="card-text">
+                                <?php echo $windSpeed; ?> km/h
+                            </p>
+                            <p class="card-text"><iconify-icon icon="codicon:compass"></iconify-icon>
+                                <?php echo $windDegree; ?>°
+                            </p>
                         </div>
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Day</p>
-                            <p class="card-text">Min</p>
-                            <p class="card-text">Max</p>
+                            <p class="card-text">Visiblity</p>
+                            <p class="card-text">
+                                <?php echo $visiblity; ?> km
+                            </p>
+                            <p class="card-text">
+                            <div class="progress" role="progressbar" aria-label="Visiblity example"
+                                aria-valuenow="<?php echo $visibility; ?>" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
+                                    style="width: <?php echo $visiblity * 10; ?>%; <?php echo ($visiblity * 10 > 50) ? 'background-color: greenyellow;' : 'background-color: red;'; ?>">
+                                    <?php echo $visiblity * 10; ?>%
+                                </div>
+                            </div>
+                            </p>
                         </div>
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Day</p>
-                            <p class="card-text">Min</p>
-                            <p class="card-text">Max</p>
+                            <p class="card-text">Cloud</p>
+                            <p class="card-text">
+                                <?php echo $cloud; ?>%
+                            </p>
+                            <p class="card-text">
+                            <div class="progress" role="progressbar" aria-label="Cloud example"
+                                aria-valuenow="<?php echo $cloud; ?>" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
+                                    style="width: <?php echo $cloud; ?>%; <?php echo ($cloud < 20) ? 'background-color: white ;' : (($cloud >= 20 && $cloud <= 70) ? 'background-color: lightblue;' : 'background-color: #6a6d6d;') ?>">
+                                    <?php echo $cloud; ?>%
+                                </div>
+                            </div>
+                            </p>
                         </div>
                     </div>
 
@@ -308,5 +341,6 @@ if ($clima === null || !isset($clima['list'])) {
     </div>
 
 </body>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
 </html>

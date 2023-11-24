@@ -3,6 +3,12 @@ body {
     margin: 0;
 }
 
+.card {
+    background-color: rgb(255, 243, 243);
+
+    border-color: rgb(255, 243, 243);
+}
+
 #Container {
     display: flex;
     align-items: center;
@@ -12,6 +18,9 @@ body {
 #Sidebar {
     width: 30%;
     height: 100%;
+    background-color: rgb(204, 237, 198);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 #STop {
@@ -20,7 +29,10 @@ body {
     justify-content: center;
     align-items: center;
     padding-right: 20%;
+    font-size: 2em;
 }
+
+
 
 #SMid {
     height: 30%;
@@ -46,6 +58,7 @@ body {
 }
 
 #Nav {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: flex;
     justify-content: space-between;
     padding: 2%;
@@ -67,15 +80,21 @@ body {
 
 #Week {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: wheat;
+    background-color: #f9f8eb;
     height: 30%;
 }
 
 #WeekDayTepms {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
     height: 70%;
+    margin-top: 2%;
+    margin-inline: 1%;
+    border-style: solid;
+    border-color: antiquewhite;
+    border-radius: 1px;
 }
 
 #WeekDayTepms .card {
@@ -93,11 +112,13 @@ body {
 
 #Highlights {
     height: 70%;
-    background-color: wheat;
+    background-color: #f9f8eb;
 }
 
-#Headings {
+#Heading {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2%;
+
 }
 
 #TodayHighlights {
@@ -108,7 +129,7 @@ body {
     margin: 0 auto;
     max-width: 100%;
     max-height: 70%;
-    padding: 0 2%;
+    padding: 2% 2%;
 
 }
 
