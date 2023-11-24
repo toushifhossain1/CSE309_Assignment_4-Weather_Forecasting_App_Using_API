@@ -11,6 +11,7 @@ $timestamp = $clima->list[0]->dt;
 $feelsLike = $clima->list[0]->main->feels_like;
 $minTemp = $clima->list[0]->main->temp_min;
 $maxTemp = $clima->list[0]->main->temp_max;
+$humidity = $clima->list[0]->main->humidity;
 
 $dayTime = date("l, H:i", $timestamp);
 
@@ -259,9 +260,21 @@ if ($clima === null || !isset($clima['list'])) {
                 <div id="TodayHighlights">
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Day</p>
-                            <p class="card-text">Min</p>
-                            <p class="card-text">Max</p>
+                            <p class="card-text">Humidity</p>
+                            <p class="card-text">
+                                <?php echo $humidity; ?>
+                            </p>
+                            <p class="card-text">
+                            <div class="progress" role="progressbar" aria-label="Humidity example"
+                                aria-valuenow="<?php echo $humidity; ?>" aria-valuemin="0" aria-valuemax="100">
+
+                                <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
+                                    style="width: <?php echo $humidity; ?>%; <?php echo ($humidity > 50) ? 'background-color: red;' : 'background-color: greenyellow;'; ?>">
+                                    <?php echo $humidity; ?>%
+                                </div>
+                            </div>
+
+                            </p>
                         </div>
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
