@@ -263,22 +263,29 @@ if ($clima === null || !isset($clima['list'])) {
                 </div>
             </div>
             <div id="Highlights">
+                <br>
                 <div id="Heading">
-                    <br> <br> <b><u>Today's Highlights</u></b>
+                    <b><u>Today's Highlights</u></b>
                 </div>
                 <div id="TodayHighlights">
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Humidity</p>
                             <p class="card-text">
+                            <h5 style="text-align: center;"><u>Humidity</u>
+                            </h5>
+                            </p>
+
+                            <p class="card-text">
+                            <h4 style="text-align: center;">
                                 <?php echo $humidity; ?>%
+                            </h4>
                             </p>
                             <p class="card-text">
                             <div class="progress" role="progressbar" aria-label="Humidity example"
                                 aria-valuenow="<?php echo $humidity; ?>" aria-valuemin="0" aria-valuemax="100">
 
                                 <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
-                                    style="width: <?php echo $humidity; ?>%; <?php echo ($humidity > 50) ? 'background-color: red;' : 'background-color: greenyellow;'; ?>">
+                                    style="width: <?php echo $humidity; ?>%; <?php echo ($humidity > 50) ? 'background-color: red; color: black;' : 'background-color: greenyellow; color: black;'; ?>">
                                     <?php echo $humidity; ?>%
                                 </div>
                             </div>
@@ -288,10 +295,15 @@ if ($clima === null || !isset($clima['list'])) {
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Wind Speed</p>
                             <p class="card-text">
-                                <?php echo $windSpeed; ?> km/h
+                            <h5 style="text-align: center;"><u>Wind Speed</u></h5>
                             </p>
+                            <p class="card-text">
+                                <h4 style="text-align: center;"><?php echo $windSpeed; ?> km/h
+                                </h4>
+                               
+                            </p>
+                            <br>
                             <p class="card-text"><iconify-icon icon="codicon:compass"></iconify-icon>
                                 <?php echo $windDegree; ?>°
                             </p>
@@ -299,15 +311,19 @@ if ($clima === null || !isset($clima['list'])) {
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Visiblity</p>
                             <p class="card-text">
-                                <?php echo $visiblity; ?> km
+                            <h5 style="text-align: center;"><u>Visiblity</u></h5>
+                            </p>
+                            <p class="card-text">
+                                <h4 style="text-align: center;"><?php echo $visiblity; ?> km
+                                </h4>
+                                
                             </p>
                             <p class="card-text">
                             <div class="progress" role="progressbar" aria-label="Visiblity example"
                                 aria-valuenow="<?php echo $visibility; ?>" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
-                                    style="width: <?php echo $visiblity * 10; ?>%; <?php echo ($visiblity * 10 > 50) ? 'background-color: greenyellow;' : 'background-color: red;'; ?>">
+                                    style="width: <?php echo $visiblity * 10; ?>%; <?php echo ($visiblity * 10 > 50) ? 'background-color: greenyellow; color: black;' : 'background-color: red; color: black;'; ?>">
                                     <?php echo $visiblity * 10; ?>%
                                 </div>
                             </div>
@@ -316,15 +332,19 @@ if ($clima === null || !isset($clima['list'])) {
                     </div>
                     <div class="card" style="width: calc(50% - 2%);">
                         <div class="card-body">
-                            <p class="card-text">Cloud</p>
                             <p class="card-text">
+                            <h5 style="text-align: center;"><u>Cloud</u></h5>
+                            </p>
+                            <p class="card-text">
+                            <h5 style="text-align: center;">
                                 <?php echo $cloud; ?>%
+                            </h5>
                             </p>
                             <p class="card-text">
                             <div class="progress" role="progressbar" aria-label="Cloud example"
                                 aria-valuenow="<?php echo $cloud; ?>" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar <?php echo $colorClass; ?> text-bg-warning"
-                                    style="width: <?php echo $cloud; ?>%; <?php echo ($cloud < 20) ? 'background-color: white ;' : (($cloud >= 20 && $cloud <= 70) ? 'background-color: lightblue;' : 'background-color: #6a6d6d;') ?>">
+                                    style="width: <?php echo $cloud; ?>%; <?php echo ($cloud < 20) ? 'background-color: white ;color: black;' : (($cloud >= 20 && $cloud <= 70) ? 'background-color: lightblue; color: black;' : 'background-color: #6a6d6d; color: black;') ?>">
                                     <?php echo $cloud; ?>%
                                 </div>
                             </div>
